@@ -1,0 +1,51 @@
+<view class="order-detail-container">
+  <!-- 用餐方式 -->
+  <view class="section">
+    <view class="section-title">用餐方式</view>
+    <view class="dining-options">
+      <view class="option {{diningType === 'dine-in' ? 'active' : ''}}" 
+            data-type="dine-in" bindtap="selectDiningType">
+        堂食
+      </view>
+      <view class="option {{diningType === 'take-out' ? 'active' : ''}}" 
+            data-type="take-out" bindtap="selectDiningType">
+        打包
+      </view>
+    </view>
+  </view>
+
+  <!-- 桌号选择（堂食时显示） -->
+  <view class="section" wx:if="{{diningType === 'dine-in'}}">
+    <view class="section-title">选择桌号</view>
+    <input class="table-input" type="number" placeholder="请输入桌号" 
+           bindinput="inputTableNumber" value="{{tableNumber}}"/>
+  </view>
+
+  <!-- 订单商品 -->
+  <view class="section">
+    <view class="section-title">订单详情</view>
+    <view class="order-items">
+      <view class="order-item" wx:for="{{cart}}" wx:key="id">
+        <view class="item-name">{{item.name}}</view>
+        <view class="item-count">x{{item.count}}</view>
+        <view class="item-price">¥{{item.price * item.count}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 备注 -->
+  <view class="section">
+    <view class="section-title">备注</view>
+    <textarea class="remark-input" placeholder="如有特殊要求请备注" 
+              bindinput="inputRemark" value="{{remark}}"></textarea>
+  </view>
+
+  <!-- 订单总计 -->
+  <view class="total-section">
+    <view class="total-label">合计：</view>
+    <view class="total-price">¥{{totalPrice}}</view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn" bindtap="submitOrder">提交订单</button>
+</view>
