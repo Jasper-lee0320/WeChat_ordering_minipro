@@ -1,0 +1,70 @@
+<view class="menu-container">
+  <!-- 左侧分类 -->
+  <scroll-view class="category-list" scroll-y>
+    <view 
+      class="category-item {{currentCategory === index ? 'active' : ''}}"
+      wx:for="{{categories}}" 
+      wx:key="id"
+      data-index="{{index}}"
+      bindtap="selectCategory">
+      {{item.name}}
+    </view>
+  </scroll-view>
+
+  <!-- 右侧菜品列表 -->
+  <scroll-view class="food-list" scroll-y scroll-into-view="{{toView}}">
+    <view wx:for="{{categories}}" wx:key="id" id="category-{{index}}">
+      <view class="food-category-title">{{item.name}}</view>
+      <view class="food-item" wx:for="{{item.foods}}" wx:for-item="food" wx:key="id">
+        <image src="{{food.image}}" class="food-image"/>
+        <view class="food-info">
+          <view class="food-name">{{food.name}}</view>
+          <view class="food-desc">{{food.desc}}</view>
+          <view class="food-sales">月售 {{food.sales}}</view>
+          <view class="food-price">¥{{food.price}}</view>
+        </view>
+        <view class="food-action">
+          <view wx:if="{{getItemCount(food.id) > 0}}" class="count-control">
+            <text class="minus" data-id="{{food.id}}" bindtap="decreaseCount">-</text>
+            <text class="count">{{getItemCount(food.id)}}</text>
+            <text class="plus" data-id="{{food.id}}" bindtap="increaseCount">+</text>
+          </view>
+          <button wx:else class="add-btn" data-food="{{food}}" bindtap="addToCart">+</button>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 底部购物车 -->
+  <view class="cart-bar" wx:if="{{cartTotal > 0}}">
+    <view class="cart-left" bindtap="showCartDetail">
+      <view class="cart-icon">
+        <image src="/images/cart.png"/>
+        <text class="cart-count">{{cartCount}}</text>
+      </view>
+      <view class="cart-price">¥{{cartTotal}}</view>
+    </view>
+    <view class="cart-btn" bindtap="goToConfirm">去结算</view>
+  </view>
+</view>
+
+<!-- 购物车详情弹窗 -->
+<view class="cart-modal" wx:if="{{showCart}}" bindtap="hideCartDetail">
+  <view class="cart-detail" catchtap="stopPropagation">
+    <view class="cart-header">
+      <text>购物车</text>
+      <text class="clear-btn" bindtap="clearCart">清空</text>
+    </view>
+    <scroll-view class="cart-items" scroll-y>
+      <view class="cart-item" wx:for="{{cart}}" wx:key="id">
+        <view class="item-name">{{item.name}}</view>
+        <view class="item-price">¥{{item.price}}</view>
+        <view class="count-control">
+          <text class="minus" data-id="{{item.id}}" bindtap="decreaseCount">-</text>
+          <text class="count">{{item.count}}</text>
+          <text class="plus" data-id="{{item.id}}" bindtap="increaseCount">+</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

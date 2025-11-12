@@ -1,0 +1,100 @@
+.index-container {
+  background: white;
+}
+
+.banner {
+  width: 100%;
+  height: 400rpx;
+}
+
+.banner image {
+  width: 100%;
+  height: 100%;
+}
+
+.shop-info {
+  padding: 40rpx;
+  background: white;
+  margin-bottom: 20rpx;
+}
+
+.shop-name {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.shop-desc {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+
+.shop-time, .shop-address, .shop-phone {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.features {
+  display: flex;
+  padding: 40rpx;
+  background: white;
+  margin-bottom: 20rpx;
+}
+
+.feature-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 10rpx;
+}
+
+.hot-section {
+  padding: 40rpx;
+  background: white;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.hot-list {
+  white-space: nowrap;
+}
+
+.hot-item {
+  display: inline-block;
+  width: 200rpx;
+  margin-right: 20rpx;
+}
+
+.hot-image {
+  width: 200rpx;
+  height: 150rpx;
+  border-radius: 10rpx;
+}
+
+.hot-name {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hot-price {
+  color: #ff6b6b;
+  font-size: 28rpx;
+  font-weight: bold;
+}

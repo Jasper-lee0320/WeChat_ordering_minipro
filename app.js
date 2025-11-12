@@ -50,6 +50,7 @@ App({
     ]
   },
 
+  // 添加到购物车
   addToCart(food) {
     let cart = this.globalData.cart;
     let existItem = cart.find(item => item.id === food.id);
@@ -73,6 +74,7 @@ App({
     });
   },
 
+  // 从购物车减少
   removeFromCart(foodId) {
     let cart = this.globalData.cart;
     let index = cart.findIndex(item => item.id === foodId);
@@ -89,11 +91,13 @@ App({
     wx.setStorageSync('cart', cart);
   },
 
+  // 清空购物车
   clearCart() {
     this.globalData.cart = [];
     wx.removeStorageSync('cart');
   },
 
+  // 计算购物车总价
   calculateTotal() {
     return this.globalData.cart.reduce((total, item) => {
       return total + (item.price * item.count);
@@ -101,11 +105,13 @@ App({
   },
 
   onLaunch() {
+    // 从本地存储读取购物车数据
     const cart = wx.getStorageSync('cart');
     if (cart) {
       this.globalData.cart = cart;
     }
     
+    // 从本地存储读取订单数据
     const orders = wx.getStorageSync('orders');
     if (orders) {
       this.globalData.orders = orders;

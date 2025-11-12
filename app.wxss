@@ -7,6 +7,7 @@ page {
   padding: 20rpx;
 }
 
+/* 通用按钮样式 */
 .btn-primary {
   background-color: #ff6b6b;
   color: white;
